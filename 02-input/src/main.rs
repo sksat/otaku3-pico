@@ -53,9 +53,10 @@ fn main() -> ! {
     let mut input_pin = pins.gpio16.into_pull_up_input();
 
     loop {
-        if input_pin.is_low().unwrap() {
+        let state = input_pin.is_low();
+        if state == Ok(true) {
             let _ = led_pin.set_high();
-        } else {
+        } else if state == Ok(false) {
             let _ = led_pin.set_low();
         }
     }
