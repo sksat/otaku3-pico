@@ -1,0 +1,2 @@
+[template]
+sub_templates = ["00-hello", "01-led"]
