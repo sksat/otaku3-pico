@@ -11,10 +11,14 @@ use panic_halt as _;
 
 // traits
 use embedded_hal::delay::DelayNs;
-use embedded_hal::digital::OutputPin;
+use embedded_hal::digital::{InputPin, OutputPin};
 
+// Entry point to our bare-metal application.
+// The `#[entry]` macro ensures the Cortex-M start-up code calls this function
+// as soon as all global variables are initialised.
 #[hal::entry]
 fn main() -> ! {
+    // Grab our singleton objects
     let mut pac = pac::Peripherals::take().unwrap();
 
     // Set up the watchdog driver - needed by the clock setup code
